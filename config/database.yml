@@ -81,6 +81,7 @@ test:
 #
 production:
   <<: *default
-  database: protracker_production
-  username: protracker
-  password: <%= ENV["PROTRACKER_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
+  # database: protracker_production
+  # username: protracker
+  # password: <%= ENV["PROTRACKER_DATABASE_PASSWORD"] %>

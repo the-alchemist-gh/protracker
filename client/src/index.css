@@ -6,6 +6,24 @@ body {
   margin: 0;
 }
 
+.yearBG{
+  background-color: #f5f5dc;
+}
+
+.track-btn{
+  background-color: #d62828;
+  color: #f5f5dc;
+}
+
+.primary-color{
+  color:#003049;
+}
+
+.primary-btn{
+  background-color: #003049;
+  color: #f5f5dc;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

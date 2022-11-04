@@ -19,27 +19,35 @@ function YearDropdown(){
     },[])
     return (
         <>
-            <div className="w-72 font-medium ">
-                <div className={`bg-white w-full border p-2 flex items-center justify-between rounded $`}
-                onClick={()=>setOpen(!open)}>
-                    <div className="flex">
-                        <img className="w-8 mr-2" src={`https://countryflagsapi.com/png/${selected}`} alt={`${selected}`} />
+            <div className="w-auto font-medium ">
+                <form className="flex">
+                    <div className={`bg-white w-1/2 border p-2 m-2 flex items-center justify-between rounded $`}
+                    onClick={()=>setOpen(!open)}>
+                        <div className="flex">
+                            <img className="w-8 mr-2" src={`https://countryflagsapi.com/png/${selected}`} alt={`${selected}`} />
 
-                        {
-                            selected 
-                            ?
-                                selected.length > 25 ? 
-                                selected.substring(0, 25)+"..." 
-                                : selected
-                            
-                            : "Select Country"
-                        }
+                            {
+                                selected 
+                                ?
+                                    selected.length > 25 ? 
+                                    selected.substring(0, 25)+"..." 
+                                    : selected
+                                
+                                : "Select Country"
+                            }
+                        </div>
+                        
+                        
+                        <BsChevronDown size={20} className={`${open && 'rotate-180'}`}/>
+                        
                     </div>
-                     
-                    
-                    <BsChevronDown size={20} className={`${open && 'rotate-180'}`}/>
-                    
-                </div>
+                    <div>
+                        <div className="flex">
+                            <button type="submit" className="track-btn w-full px-6 py-2 m-2 rounded hover:bg-red-900">Track now</button>
+                        </div>
+                    </div>
+                </form>
+                
                 <ul className={`bg-white shadow-md rounded mt-2 overflow-y-auto absolute max-h-60 ${
                     !open ? "hidden" : "block" 
                 }`}>

@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import Navbar  from "./components/NavBar";
 import YearSection from "./components/YearSection";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -18,9 +20,11 @@ function App() {
       <Navbar />
       <main className="App">
         <Switch>
-          <Route path="/testing">
-            <h1 className="text-2xl font-bold text-white">Test Route system2</h1>
-            
+          <Route path="/register">
+            <Register />
+          </Route>
+          <Route path="/login">
+            <Login />
           </Route>
           <Route path="/">
             <YearSection />

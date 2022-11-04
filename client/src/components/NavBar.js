@@ -97,10 +97,11 @@ function Navbar(
                                     </>
                                 ) : (
                                     <>
-                                    <li className="text-blue-900">
+                                    
+                                    <li className="primary-color">
                                         <NavLink to="/login">Log In</NavLink>
                                     </li>
-                                    <li className="text-blue-900">
+                                    <li className="primary-btn px-4 py-1 mt-4 text-white bg-black rounded-lg hover:bg-gray-500">
                                         <NavLink to="/register">Register</NavLink>
                                     </li>
                                 </>
@@ -130,10 +131,10 @@ function Navbar(
                                     </>
                                 ) : (
                                     <>
-                                    <li className="text-blue-900">
+                                    <li className="primary-color">
                                         <NavLink to="/login">Log In</NavLink>
                                     </li>
-                                    <li className="text-blue-900">
+                                    <li className="primary-btn px-4 py-1 mt-4 text-white bg-black rounded-lg hover:bg-gray-500">
                                         <NavLink to="/register">Register</NavLink>
                                     </li>
                                 </>

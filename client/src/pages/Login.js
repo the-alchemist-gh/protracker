@@ -19,7 +19,7 @@ function Login({confirmLogin}){
     e.preventDefault();
 
     // get request to get all users
-    fetch("http://localhost:9292/users")
+    fetch("/users")
       .then(r=> r.json())
       .then((data)=>{
 

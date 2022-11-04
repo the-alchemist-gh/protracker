@@ -1,27 +1,37 @@
 import React,{useState} from "react";
 import { NavLink,useHistory } from "react-router-dom";
 
-function Register(){
-
-  let loginRedirect = useHistory();
+function Register({ onLogin }){
+  const [errors, setErrors] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const loginRedirect = useHistory();
   const [registerDataState, setRegisterDataState] = useState({
     name: "",
     email: "",
-    type: "voter",
+    user_type: "Voter",
     institution: "",
     password: "",
-    password2: ""
+    password2: "",
+    approved: 1
   });
   
-
+  
   function handleSubmit(e){
     e.preventDefault();
+    setErrors([]);
+    setIsLoading(true);
+    let approval = 1;
+    if(registerDataState.user_type==="Media"){
+      approval = 0;
+    }
     const newFormData = {
       name: registerDataState.name,
       email: registerDataState.email,
-      type: registerDataState.type,
+      user_type: registerDataState.user_type,
       institution: registerDataState.institution,
-      password: registerDataState.password
+      password: registerDataState.password,
+      password_confirmation: registerDataState.password2,
+      approved: approval
     }
     setRegisterDataState(newFormData);
 
@@ -32,10 +42,17 @@ function Register(){
       },
       body:JSON.stringify(newFormData),
     })
-    .then(r=>r.json())
+    .then((r)=> {
+      if (r.ok) {
+        r.json().then((user) => onLogin(user));
+        loginRedirect.push("/login")
+      } else {
+        r.json().then((err) => setErrors(err.errors));
+      }
+    })
 
     .then(
-      loginRedirect("/login")    
+       
     )
 
   };
@@ -81,18 +98,18 @@ function Register(){
                 <select
                   id="type"
                   onChange={handleChange}  
-                  value={registerDataState.type} 
-                  name="type"
+                  value={registerDataState.user_type} 
+                  name="user_type"
                   autoComplete="Type"
                   className={"mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"}>
-                  <option value="admin">Admin</option>
-                  <option value="media">Media</option>
-                  <option value="voter">Voter</option>
+                  <option value="Admin">Admin</option>
+                  <option value="Media">Media</option>
+                  <option value="Voter">Voter</option>
                 </select>
               </div>
               <div className={`mt-4
                 ${
-                  registerDataState.type === "media"
+                  registerDataState.user_type === "Media"
                   ? 'block' 
                   : 'hidden'
                 }
@@ -122,7 +139,12 @@ function Register(){
                     value={registerDataState.password2} className="w-full px-4 py-2 mt-0 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"/>
               </div>
               <div className="flex">
-                <button type="submit" className="primary-btn w-full px-6 py-2 mt-4 text-white bg-black rounded-lg hover:bg-gray-500">Register</button>
+                <button type="submit" className="primary-btn w-full px-6 py-2 mt-4 text-white bg-black rounded-lg hover:bg-gray-500">{isLoading ? "Loading..." : "Register"}</button>
+              </div>
+              <div>
+                {errors.map((err) => (
+                  <li className="text-red-600 bg-red-100 m-2 px-2 rounded-lg" key={err}>{err}</li>
+                ))}
               </div>
               <div className="mt-6 text-grey-dark">
                 Already have an account? <span> 
@@ -141,6 +163,7 @@ function Register(){
               </div>
             </div>
           </form>
+          
         </div>
       </div>
     </>

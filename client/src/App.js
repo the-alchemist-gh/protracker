@@ -1,6 +1,8 @@
 // client/src/components/App.js
 import { useState, useEffect } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
+import Navbar  from "./components/NavBar";
+import YearSection from "./components/YearSection";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -12,18 +14,21 @@ function App() {
   }, []);
 
   return (
-    <BrowserRouter>
-      <div className="App">
+    <>
+      <Navbar />
+      <main className="App">
         <Switch>
           <Route path="/testing">
-            <h1>Test Route</h1>
+            <h1 className="text-2xl font-bold text-white">Test Route system2</h1>
+            
           </Route>
           <Route path="/">
+            <YearSection />
             <h1>Page Count: {count}</h1>
           </Route>
         </Switch>
-      </div>
-    </BrowserRouter>
+      </main>
+    </>
   );
 }
 

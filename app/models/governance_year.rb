@@ -1,0 +1,2 @@
+class GovernanceYear < ApplicationRecord
+end

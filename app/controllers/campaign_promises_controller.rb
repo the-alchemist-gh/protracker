@@ -1,0 +1,2 @@
+class CampaignPromisesController < ApplicationController
+end

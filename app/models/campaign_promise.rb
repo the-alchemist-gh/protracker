@@ -1,0 +1,2 @@
+class CampaignPromise < ApplicationRecord
+end

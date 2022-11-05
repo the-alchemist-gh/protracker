@@ -11,7 +11,7 @@ class CreateCampaignPromises < ActiveRecord::Migration[7.0]
       t.string :status
       t.integer :country_id
       t.integer :governance_year_id
-      t.string :user_id
+      t.integer :user_id
 
       t.timestamps
     end

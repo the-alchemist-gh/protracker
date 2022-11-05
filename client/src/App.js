@@ -5,6 +5,7 @@ import Navbar  from "./components/NavBar";
 import YearSection from "./components/YearSection";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import PresInfo from "./components/PresInfo";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -28,6 +29,7 @@ function App() {
           </Route>
           <Route path="/">
             <YearSection />
+            <PresInfo />
             <h1>Page Count: {count}</h1>
           </Route>
         </Switch>

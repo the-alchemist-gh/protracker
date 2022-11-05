@@ -4,7 +4,7 @@ class CreateGovernanceYears < ActiveRecord::Migration[7.0]
       t.string :year
       t.string :political_party
       t.string :president
-      t.string :country_id
+      t.integer :country_id
 
       t.timestamps
     end

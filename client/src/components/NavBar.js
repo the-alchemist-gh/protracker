@@ -3,25 +3,24 @@ import { NavLink,useHistory } from "react-router-dom";
 // import "../assets/logo.svg";
 import logo from "../assets/logo.svg";
 import CountryDropdown from "./CountryDropdown";
+import GetCountry from "./GetCountry";
 
 // import NewItem from "./NewItem";
 
 function Navbar(
-    {sendSearchValue, loginName, isLoggedIn}
+    {user, setUser, getSelectedCountryName, getSelectedCountryYears}
     ){
   const [navbar, setNavbar] = useState(false);
   let loginRedirect = useHistory();
 
-  function handleSearch(e){
-    e.preventDefault();
-    sendSearchValue(e.target.value);
+  function handleLogout() {
+    fetch("/logout", { method: "DELETE" }).then((r) => {
+      if (r.ok) {
+        setUser(null);
+      }
+    });
   }
 
-  function handleLogOut(){
-    window.location.reload();
-    loginRedirect("/");
-  }
- 
   return (
     <div >
       
@@ -79,7 +78,7 @@ function Navbar(
                 <div>
                   <div>
                     <div className="relative">
-                      <CountryDropdown />
+                      <GetCountry getSelectedCountryName={getSelectedCountryName} getSelectedCountryYears={getSelectedCountryYears} />
                     </div>
                   </div>
                   <div className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
@@ -88,12 +87,11 @@ function Navbar(
                       <div className="mt-3 space-y-2 lg:hidden md:inline-block">
                         <ul className="items-center lg-hidden flex justify-between md:flex md:space-x-6 md:space-y-0">
                             {
-                                isLoggedIn ? (
-                                    <><li className="text-blue-900">
-                                              Welcome {loginName}
-                                          </li><li onClick={handleLogOut} className="text-blue-900">
-                                                  <button type="button">Log Out</button>
-                                              </li>
+                                user ? (
+                                    <>
+                                        <li onClick={handleLogout}  className="primary-btn px-4 py-1 mt-4 text-white bg-black rounded-lg hover:bg-gray-500">
+                                            Logout
+                                        </li>
                                     </>
                                 ) : (
                                     <>
@@ -122,12 +120,11 @@ function Navbar(
                       <ul className="items-center flex justify-between md:flex md:space-x-6 md:space-y-0">
 
                           {
-                                isLoggedIn ? (
-                                    <><li className="text-blue-900">
-                                              Welcome {loginName}
-                                          </li><li onClick={handleLogOut} className="text-blue-900">
-                                                  <button type="button">Log Out</button>
-                                              </li>
+                                user ? (
+                                    <>
+                                              <li onClick={handleLogout}  className="primary-btn px-4 py-1 mt-4 text-white bg-black rounded-lg hover:bg-gray-500">
+                                            Logout
+                                        </li>
                                     </>
                                 ) : (
                                     <>

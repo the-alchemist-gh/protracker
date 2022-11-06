@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 import { NavLink, useHistory } from "react-router-dom";
 
-function Login({confirmLogin}){
+function LoginForm({confirmLogin}){
   let homeRedirect = useHistory();
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -44,8 +44,7 @@ function Login({confirmLogin}){
 
   return (
     <>
-      <div className="flex py-10 items-center justify-center content-center yearBG">
-            <div className="px-8 py-6 mx-4 my-10 text-left bg-white shadow-lg md:w-1/3 lg:w-1/3 sm:w-1/3">
+      <div >
               <h3 className="text-2xl mt-2 font-bold text-center text-blue-900">Login</h3>
               <form onSubmit={handleFormSubmit}>
                 <div className="mt-4">
@@ -84,10 +83,9 @@ function Login({confirmLogin}){
                   </div>
                 </div>
               </form>
-            </div>
       </div>
     </>
   )
 }
 
-export default Login
+export default LoginForm

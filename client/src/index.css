@@ -19,6 +19,15 @@ body {
   color:#003049;
 }
 
+.sec-bg{
+  background-color: #003049;
+}
+
+.sec-btn{
+  background-color: #f5f5dc;
+  color: #003049;
+}
+
 .primary-btn{
   background-color: #003049;
   color: #f5f5dc;

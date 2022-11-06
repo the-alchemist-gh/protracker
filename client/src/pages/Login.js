@@ -1,15 +1,17 @@
-import React,{useState} from "react";
-import { NavLink,useHistory } from "react-router-dom";
+import React from "react";
 import LoginForm from "../components/LoginForm"
-// import NewItem from "./NewItem";
 
-function Login(
-    // {sendSearchValue, loginName, isLoggedIn}
-    ){
+function Login( {confirmLogin}){
  
   return (
     < >
-      <LoginForm />
+    <div className="flex items-center justify-center content-center yearBG py-10 ">
+      <div className="px-8 py-6 mx-4 my-10 text-left bg-white shadow-lg md:w-1/3 lg:w-1/3 sm:w-1/3">
+        <LoginForm confirmLogin={confirmLogin} />
+      </div>
+      
+    </div>
+      
     </>
   );
 }

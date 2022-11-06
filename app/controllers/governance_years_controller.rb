@@ -8,9 +8,10 @@ class GovernanceYearsController < ApplicationController
         render json: period, status: :created
     end
 
-    # def show
-    #     render json: @current_user
-    # end
+    def show
+        eachYear = GovernanceYear.find_by(id: params[:id])
+        render json: eachYear
+    end
 
   private
 

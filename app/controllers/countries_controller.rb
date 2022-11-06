@@ -8,6 +8,11 @@ class CountriesController < ApplicationController
         render json: country, status: :created
     end
 
+    def destroy
+      country = Country.find(params[:id])
+      country.destroy
+      head :no_content
+    end
     # def show
     #     render json: @current_user
     # end

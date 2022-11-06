@@ -3,14 +3,15 @@ import {BsChevronDown} from "react-icons/bs";
 import { AiOutlineSearch } from "react-icons/ai";
 
 
-function CountryDropdown({getSelectedCountryName}){
+function GetCountry({getSelectedCountryName, getSelectedCountryYears}){
     const [countries, setCountries] = useState(null);
     const [inputValue, setInputValue] = useState("");
-    const [selected, setSelected] = useState("Ghana");
+    const [selected, setSelected] = useState("");
     const [open, setOpen] = useState(false)
+    
 
     useEffect(()=> {
-        fetch("https://restcountries.com/v2/all?fields=name")
+        fetch("/countries")
         .then(res=> res.json())
         .then((data)=> {
             
@@ -66,6 +67,7 @@ function CountryDropdown({getSelectedCountryName}){
                                 onClick={()=>{
                                     if(country.name.toLowerCase() !== selected){
                                         setSelected(country.name)
+                                        getSelectedCountryYears(country.governance_years)
                                         getSelectedCountryName(country.name)
                                         setOpen(false)
                                         setInputValue("")
@@ -85,4 +87,4 @@ function CountryDropdown({getSelectedCountryName}){
     )
 }
 
-export default CountryDropdown
+export default GetCountry

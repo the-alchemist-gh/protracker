@@ -3,20 +3,17 @@ import {BsChevronDown} from "react-icons/bs";
 import { AiOutlineSearch } from "react-icons/ai";
 
 
-function YearDropdown(){
-    const [countries, setCountries] = useState(null);
+function YearDropdown({trackYear,trackCountry, getYearId}){
     const [inputValue, setInputValue] = useState("");
-    const [selected, setSelected] = useState("Ghana");
-    const [open, setOpen] = useState(false)
+    const [selected, setSelected] = useState("");
+    const [open, setOpen] = useState(false);
+
 
     useEffect(()=> {
-        fetch("https://restcountries.com/v2/all?fields=name")
-        .then(res=> res.json())
-        .then((data)=> {
-            
-            setCountries(data)
-        })
-    },[])
+        setSelected("")
+        setOpen(false)
+        setInputValue("")
+    },[trackCountry])
     return (
         <>
             <div className="w-auto font-medium ">
@@ -24,27 +21,29 @@ function YearDropdown(){
                     <div className={`bg-white w-1/2 border p-2 m-2 flex items-center justify-between rounded $`}
                     onClick={()=>setOpen(!open)}>
                         <div className="flex">
-                            <img className="w-8 mr-2" src={`https://countryflagsapi.com/png/${selected}`} alt={`${selected}`} />
+                            {
+                                selected ?
+                                (
+                                    <img className="w-8 mr-2" src={`https://countryflagsapi.com/png/${trackCountry}`} alt="" />
+                                ) : null
+                            }
+                            
 
                             {
                                 selected 
                                 ?
+                                    
                                     selected.length > 25 ? 
                                     selected.substring(0, 25)+"..." 
                                     : selected
                                 
-                                : "Select Country"
+                                : "Select Year"
                             }
                         </div>
                         
                         
                         <BsChevronDown size={20} className={`${open && 'rotate-180'}`}/>
                         
-                    </div>
-                    <div>
-                        <div className="flex">
-                            <button type="submit" className="track-btn w-full px-6 py-2 m-2 rounded hover:bg-red-900">Track now</button>
-                        </div>
                     </div>
                 </form>
                 
@@ -55,16 +54,16 @@ function YearDropdown(){
                         <AiOutlineSearch size={18} className="text-gray-700"/>
                         <input type="text" 
                         value={inputValue}
-                       onChange={(e)=> setInputValue(e.target.value.toLowerCase())} placeholder="Enter country name" className="placeholder:text-gray-400 p-2 outline-none" />
+                       onChange={(e)=> setInputValue(e.target.value.toLowerCase())} placeholder="Enter Year" className="placeholder:text-gray-400 p-2 outline-none" />
                     </div>
                     {
-                        countries?.map(country => (
-                            <li key={country?.name} className={`p-2 test-sm flex hover:bg-sky-600 hover:text-white 
+                        trackYear?.map(year => (
+                            <li key={year?.id} className={`p-2 test-sm flex hover:bg-sky-600 hover:text-white 
                             ${
-                                country.name.toLowerCase() === selected.toLowerCase() && 'bg-sky-600 text-white'
+                                year.year.toLowerCase() === selected.toLowerCase() && 'bg-sky-600 text-white'
                             }
                             ${
-                                country.name.toLowerCase().startsWith(`${inputValue}`)
+                                year.year.toLowerCase().startsWith(`${inputValue}`)
                                 ? "block" 
                                 : "hidden"
                         
@@ -72,15 +71,17 @@ function YearDropdown(){
                             `}
                             
                                 onClick={()=>{
-                                    if(country.name.toLowerCase() !== selected){
-                                        setSelected(country.name)
+                                    if(year.year.toLowerCase() !== selected){
+                                        setSelected(year.year)
                                         setOpen(false)
                                         setInputValue("")
+                                        getYearId(year.id)
+                                        // setTrackYear()
                                     }
                                 }}
                             > 
-                                <img className="w-8 mr-2" src={`https://countryflagsapi.com/png/${country.name}`} alt="" />
-                                {country.name}
+                                <img className="w-8 mr-2" src={`https://countryflagsapi.com/png/${trackCountry}`} alt="" />
+                                {year.year}
                             
                             </li>
                         ))

@@ -7,6 +7,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import PresInfo from "./components/PresInfo";
 import AdminNav from "./components/AdminNav"
+import CompareStatus from "./components/CompareStatus";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -25,10 +26,6 @@ function App() {
       }
     });
   }, []);
-
-  // setTrackYear(trackCountry.governance_years)
-  console.log(trackYear)
-  console.log(trackCountry)
 
   return (
     <>
@@ -54,6 +51,7 @@ function App() {
           <Route path="/">
             <YearSection  user={user} trackYear={trackYear} trackCountry={trackCountry} getYearId={setYearId} />
             <PresInfo yearId={yearId}/>
+            <CompareStatus />
           </Route>
         </Switch>
       </main>

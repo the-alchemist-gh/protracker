@@ -54,8 +54,8 @@ function AddCountry(){
   return (
     <>
       <div className="w-2/3 flex justify-center rounded p-7 m mx-auto bg-white md:items-center md:px-4">
-          <form className="flex w-3/4  md:flex" onSubmit={handleSubmit}>
-            <div className="flex md:flex items-center justify-center">
+          <form className="flex md:w-3/4  md:flex" onSubmit={handleSubmit}>
+            <div className="md:flex items-center justify-center">
               <div className="mt-4">
                 <CountryDropdown getSelectedCountryName = {getCountryName} />
               </div>

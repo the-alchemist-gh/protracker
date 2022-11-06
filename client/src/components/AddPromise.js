@@ -1,8 +1,7 @@
 import React,{useState, useEffect} from "react";
 import { useHistory } from "react-router-dom";
 
-function AddYears(){
-  let homeRedirect = useHistory();
+function AddPromise(){
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -12,8 +11,7 @@ function AddYears(){
     year: "",
     political_party: "",
     president: "",
-    country_id: 1,
-    image_url: ""
+    country_id: 1
   });
 
   useEffect(()=> {
@@ -25,11 +23,8 @@ function AddYears(){
     })
 },[])
 
-  function handleChange(e){
-    setYearDataState({
-      ...yearDataState,
-      [e.target.name]: e.target.value
-    });
+  function handleChange(){
+
   }
 
   function handleSubmit(e){
@@ -37,15 +32,12 @@ function AddYears(){
     setErrors([]);
     setIsLoading(true);
     const newFormData = {
-      year: yearDataState.year,
-      political_party: yearDataState.political_party,
-      president: yearDataState.president,
-      country_id: yearDataState.country_id,
-      image_url: yearDataState.image_url
+      name: yearDataState.name,
+      flag_image_url: yearDataState.flag_image_url,
     }
     setYearDataState(newFormData);
 
-    fetch("/governance_years",{
+    fetch("/countries",{
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -54,10 +46,8 @@ function AddYears(){
     })
     .then((r)=> {
       if (r.ok) {
-        r.json().then((data) => data);
+        r.json().then((user) => user);
         setIsSuccess(true)
-        // window.location.reload();
-
       } else {
         r.json().then((err) => setErrors(err.errors));
         setIsSuccess(false)
@@ -94,29 +84,10 @@ function AddYears(){
                 <label className="block">Enter Governance Period</label>
                 <input 
                   type="text" 
-                  placeholder="Eg. 2020-2024" 
+                  placeholder="Year" 
                   name="year" 
                   onChange={handleChange}  
                   value={yearDataState.year} className="w-full px-4 py-2 mt-0 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"/>
-              </div>
-              
-              <div className="m-2">
-                <label className="block">Name of President</label>
-                <input 
-                  type="text" 
-                  placeholder="President's Name" 
-                  name="president" 
-                  onChange={handleChange}  
-                  value={yearDataState.president} className="w-full px-4 py-2 mt-0 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"/>
-              </div>
-              <div className="m-2">
-                <label className="block">Image url for president</label>
-                <input 
-                  type="text" 
-                  placeholder="President's Image" 
-                  name="image_url" 
-                  onChange={handleChange}  
-                  value={yearDataState.image_url} className="w-full px-4 py-2 mt-0 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"/>
               </div>
               <div className="m-2">
                 <label className="block">Political Party</label>
@@ -126,6 +97,15 @@ function AddYears(){
                   name="political_party" 
                   onChange={handleChange}  
                   value={yearDataState.political_party} className="w-full px-4 py-2 mt-0 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"/>
+              </div>
+              <div className="m-2">
+                <label className="block">President</label>
+                <input 
+                  type="text" 
+                  placeholder="President" 
+                  name="president" 
+                  onChange={handleChange}  
+                  value={yearDataState.president} className="w-full px-4 py-2 mt-0 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"/>
               </div>
               
               <div className="mt-4 mx-2">
@@ -138,7 +118,7 @@ function AddYears(){
           {
             isSuccess ? 
             <div className="text-green-600 text-sm font-bold bg-green-100 m-2 px-2 py-2 rounded-md">
-              Governance Period Added Successfully
+              Year Added Successfully
             </div>
             : null
           }
@@ -152,4 +132,4 @@ function AddYears(){
   )
 }
 
-export default AddYears
+export default AddPromise

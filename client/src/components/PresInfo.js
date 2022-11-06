@@ -31,7 +31,7 @@ function PresInfo({yearId}){
                 }}>
                     <div className="md:w-2/3 md:flex my-10 items-center justify-center">
                         <div className="md:w-1/3 my-5 mx-2 p-10">
-                            <img className="rounded m-5" src="https://upload.wikimedia.org/wikipedia/commons/3/31/Nana_Akufo-Addo_at_European_Development_Days_2017.jpg" alt="" />
+                            <img className="rounded m-5" src={`${period.image_url}`} alt="" />
                         </div>
                         <div className="md:w-2/3 primary-color my-5 mx-2 p-10">
                             <h2 className=" text-2xl font-bold px-10 mb-5"> President {
@@ -46,7 +46,7 @@ function PresInfo({yearId}){
                             </div>
                             <div>
                                 <div className="px-10 py-2">
-                                    <button type="submit" className="track-btn w-2/3 px-6 py-2 my-3 rounded hover:bg-red-900">Track {period.president} Promises now</button>
+                                    <button type="submit" className="track-btn px-6 py-2 my-3 rounded hover:bg-red-900">Track {period.president}'s Campaign Promises now</button>
                                 </div>
                             </div>
                         </div>

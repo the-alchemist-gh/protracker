@@ -13,9 +13,16 @@ class GovernanceYearsController < ApplicationController
         render json: eachYear
     end
 
+    def update
+      years = GovernanceYear.find_by(id: params[:id])
+      years.update(period_params)
+      render json: years
+    end
+
   private
 
+
   def period_params
-    params.permit(:year, :political_party, :president, :country_id)
+    params.permit(:year, :political_party, :president, :country_id, :image_url)
   end
 end

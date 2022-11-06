@@ -12,17 +12,26 @@ function AdminNav(
     ){
   const [showCountryForm, setShowCountryForm] = useState(false);
   const [showYearForm, setShowYearForm] = useState(false);
-  let loginRedirect = useHistory();
+  const [showPromiseForm, setShowPromiseForm] = useState(false);
 
 
   function handleShowCountryForm(){
     setShowYearForm(false)
+    setShowPromiseForm(false)
     setShowCountryForm(!showCountryForm)
   }
 
   function handleShowYearForm(){
     setShowCountryForm(false)
+    setShowPromiseForm(false)
     setShowYearForm(!showYearForm)
+  }
+
+  function handleShowPromiseForm(){
+    setShowCountryForm(false)
+    setShowYearForm(false)
+    setShowPromiseForm(!showPromiseForm)
+
   }
 
  
@@ -36,6 +45,9 @@ function AdminNav(
                 <div onClick={handleShowYearForm}>
                     <Button btnText={"Add New Governance Period"} />
                 </div>
+                <div onClick={handleShowPromiseForm}>
+                    <Button btnText={"Add Promise"} />
+                </div>
             </div>
                 {
                     showCountryForm ? 
@@ -47,6 +59,14 @@ function AdminNav(
                 }
                 {
                     showYearForm ? 
+                    (
+                        <div>
+                            <AddYears/>
+                        </div>
+                    ) : null
+                }
+                {
+                    showPromiseForm ? 
                     (
                         <div>
                             <AddYears/>

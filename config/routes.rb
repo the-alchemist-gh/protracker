@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :reviews, only: [:index, :show, :create]
   resources :comments, only: [:index, :show, :create]
   resources :campaign_promises
-  resources :governance_years, only: [:index, :show, :create]
+  resources :governance_years, only: [:index, :show, :create, :update]
   resources :countries, only: [:index, :show, :create, :destroy]
   # namespace do
     resources :users, only: [:index,:show, :create]

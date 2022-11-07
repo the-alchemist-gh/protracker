@@ -10,7 +10,12 @@ class GovernanceYearsController < ApplicationController
 
     def show
         eachYear = GovernanceYear.find_by(id: params[:id])
-        render json: eachYear
+        # counts = Hash.new(0)
+        # broken = eachYear.campaign_promises
+        # broken2 = broken.count { |element| element.status == "Broken" }
+
+        # broken2 = broken.tally
+        render json: eachYear 
     end
 
     def update
@@ -21,6 +26,10 @@ class GovernanceYearsController < ApplicationController
 
   private
 
+  # def addBroken
+  #   broken = @show.campaign_promises
+
+  # end
 
   def period_params
     params.permit(:year, :political_party, :president, :country_id, :image_url)

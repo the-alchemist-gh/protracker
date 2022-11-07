@@ -159,7 +159,7 @@ useEffect(()=> {
                       <option value="Energy">Energy</option>
                       <option value="Tourism">Tourism</option>
                       <option value="Technology">Technology</option>
-                      <option value="Manaufacturing">Manaufacturing</option>
+                      <option value="Manaufacturing">Manufacturing</option>
                   </select>
                 </div>
                 <div className="m-2">

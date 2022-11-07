@@ -1,8 +1,38 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import { NavLink,useHistory } from "react-router-dom";
 
-function CompareStatus( ){
-  let loginRedirect = useHistory();
+function CompareStatus( {totalCount, statCounts}){
+    const [brokenStatus, setBrokenStatus] = useState(0)
+    const [fulfilledStatus, setFulfilledStatus] = useState(0)
+    const [inProgressStatus, setInProgressStatus] = useState(0)
+    const [stalledStatus, setStalledStatus] = useState(0)
+    const [unratedStatus, setUnratedStatus] = useState(0)
+
+    const [brokenPercent, setBrokenPercent] = useState(0)
+    const [fulfilledPercent, setFulfilledPercent] = useState(0)
+    const [inProgressPercent, setInProgressPercent] = useState(0)
+    const [stalledPercent, setStalledPercent] = useState(0)
+    const [unratedPercent, setUnratedPercent] = useState(0)
+    
+
+
+    useEffect(()=> {
+        
+        setBrokenStatus(statCounts.Broken)
+        setFulfilledStatus(statCounts.Fulfilled)
+        setInProgressStatus(statCounts.In_Progress)
+        setStalledStatus(statCounts.Stalled)
+        setUnratedStatus(statCounts.Unrated)
+        
+        setBrokenPercent(Math.floor((brokenStatus/totalCount)*100))
+        setFulfilledPercent(Math.floor((fulfilledStatus/totalCount)*100))
+        setInProgressPercent(Math.floor((inProgressStatus/totalCount)*100))
+        setStalledPercent(Math.floor((stalledStatus/totalCount)*100))
+        setUnratedPercent(Math.floor((unratedStatus/totalCount)*100))
+
+        
+
+    },[statCounts,totalCount])
 
   return (
     <>
@@ -16,14 +46,33 @@ function CompareStatus( ){
                             </div>
                             <div className="h-48 flex justify-center mt-5">
                                 <div className="rounded-md h-full bg-white w-3 flex items-end">
-                                    <div className="rounded-b-md h-1/5 w-3 bg-green-700"></div>
+                                    <div className="rounded-b-md w-3 bg-green-700" style={{
+                                        height: `${fulfilledPercent}%`,
+                                    }}></div>
                                 </div>
                             </div>
                             <div>
-                                <h2>10%</h2>
+                                <h2>{fulfilledPercent ? unratedPercent:'0'}%</h2>
                             </div>
                             <div className="mt-3">
-                                <h2>10 promises </h2>
+                                <h2>
+                                    {
+                                        fulfilledStatus ? 
+                                            fulfilledStatus === 1 ?
+                                                (
+                                                    `${fulfilledStatus} Promise`
+                                                )
+                                            : 
+                                                (
+                                                    `${fulfilledStatus} Promises`
+                                                )
+
+                                        : 
+                                         (
+                                            "0 Promise"
+                                         )
+                                    }
+                                </h2>
                             </div>
                         </div>
                         <div>
@@ -32,14 +81,33 @@ function CompareStatus( ){
                             </div>
                             <div className="h-48 flex justify-center mt-5">
                                 <div className="rounded-md h-full bg-white w-3 flex items-end">
-                                    <div className="rounded-b-md h-3/5 w-3 bg-red-700"></div>
+                                    <div className="rounded-b-md w-3 bg-red-700" style={{
+                                        height: `${brokenPercent}%`,
+                                    }}></div>
                                 </div>
                             </div>
                             <div>
-                                <h2>60%</h2>
+                                <h2>{brokenPercent ? unratedPercent:'0'}%</h2>
                             </div>
                             <div className="mt-3">
-                                <h2>60 promises </h2>
+                                <h2>
+                                    {
+                                        brokenStatus ? 
+                                            brokenStatus === 1 ?
+                                                (
+                                                    `${brokenStatus} Promise`
+                                                )
+                                            : 
+                                                (
+                                                    `${brokenStatus} Promises`
+                                                )
+
+                                        : 
+                                         (
+                                            "0 Promise"
+                                         )
+                                    }
+                                </h2>
                             </div>
                         </div>
                         <div>
@@ -48,14 +116,33 @@ function CompareStatus( ){
                             </div>
                             <div className="h-48 flex justify-center mt-5">
                                 <div className="rounded-md h-full bg-white w-3 flex items-end">
-                                    <div className="rounded-b-md h-1/5 w-3 bg-orange-500"></div>
+                                    <div className="rounded-b-md w-3 bg-orange-500" style={{
+                                        height: `${stalledPercent}%`,
+                                    }}></div>
                                 </div>
                             </div>
                             <div>
-                                <h2>15%</h2>
+                                <h2>{stalledPercent ? unratedPercent:'0'}%</h2>
                             </div>
                             <div className="mt-3">
-                                <h2>15 promises </h2>
+                                <h2>
+                                    {
+                                        stalledStatus ? 
+                                            stalledStatus === 1 ?
+                                                (
+                                                    `${stalledStatus} Promise`
+                                                )
+                                            : 
+                                                (
+                                                    `${stalledStatus} Promises`
+                                                )
+
+                                        : 
+                                         (
+                                            "0 Promise"
+                                         )
+                                    }
+                                </h2>
                             </div>
                         </div>
                         <div>
@@ -64,14 +151,33 @@ function CompareStatus( ){
                             </div>
                             <div className="h-48 flex justify-center mt-5">
                                 <div className="rounded-md h-full bg-white w-3 flex items-end">
-                                    <div className="rounded-b-md h-1/5 w-3 bg-yellow-300"></div>
+                                    <div className="rounded-b-md w-3 bg-yellow-300" style={{
+                                        height: `${inProgressPercent}%`,
+                                    }}></div>
                                 </div>
                             </div>
                             <div>
-                                <h2>15%</h2>
+                                <h2>{inProgressPercent ? unratedPercent:'0'}%</h2>
                             </div>
                             <div className="mt-3">
-                                <h2>15 promises </h2>
+                                <h2>
+                                    {
+                                        inProgressStatus ? 
+                                            inProgressStatus === 1 ?
+                                                (
+                                                    `${inProgressStatus} Promise`
+                                                )
+                                            : 
+                                                (
+                                                    `${inProgressStatus} Promises`
+                                                )
+
+                                        : 
+                                         (
+                                            "0 Promise"
+                                         )
+                                    }
+                                </h2>
                             </div>
                         </div>
                         <div>
@@ -80,14 +186,33 @@ function CompareStatus( ){
                             </div>
                             <div className="h-48 flex justify-center mt-5">
                                 <div className="rounded-md h-full bg-white w-3 flex items-end">
-                                    <div className="rounded-b-md h-1/2 w-3 bg-gray-300"></div>
+                                    <div className="rounded-b-md w-3 bg-gray-300" style={{
+                                        height: `${unratedPercent}%`,
+                                    }}></div>
                                 </div>
                             </div>
                             <div>
-                                <h2>15%</h2>
+                                <h2>{unratedPercent ? unratedPercent:'0'}%</h2>
                             </div>
                             <div className="mt-3">
-                                <h2>15 promises</h2>
+                                <h2>
+                                    {
+                                        unratedStatus ? 
+                                            unratedStatus === 1 ?
+                                                (
+                                                    `${unratedStatus} Promise`
+                                                )
+                                            : 
+                                                (
+                                                    `${unratedStatus} Promises`
+                                                )
+
+                                        : 
+                                         (
+                                            "0 Promise"
+                                         )
+                                    }
+                                </h2>
                             </div>
                         </div>
                     </div>

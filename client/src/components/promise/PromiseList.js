@@ -3,13 +3,17 @@ import CompareStatus from "./CompareStatus";
 // import { NavLink,useHistory } from "react-router-dom";
 import PromiseItem from "./PromiseItem";
 
-function PromiseList({allPromise}){
-    
+function PromiseList({ statCounts, allPromise, showStat}){
+    // const [statCounts, setStatCounts] = useState()
+
  
   return (
     < >
-        <div className="w-full bg-blue-50 p-10 mt-72">
-            {/* <CompareStatus /> */}
+        <div className={`w-full bg-blue-50 p-10 ${showStat ? 'mt-60' : null}`}>
+            {
+                showStat ? 
+                (<CompareStatus totalCount={allPromise.length} statCounts={statCounts} />) : null
+            }
             {
                 allPromise.length < 1 ?
                 (
@@ -25,7 +29,7 @@ function PromiseList({allPromise}){
                             <h1 className="font-bold text-lg primary-color border-b">All Promises</h1>
                         </div>
                         <div className="flex justify-center">
-                            <div className=" hover:gap-6 m-10 w-3/4 grid md:grid-cols-3 gap-4 ">
+                            <div className="m-10 w-3/4 grid md:grid-cols-3 gap-8 ">
                                 {
 
                                     allPromise?.map((item)=>(

@@ -24,19 +24,19 @@ function CompareStatus( {totalCount, statCounts}){
         setStalledStatus(statCounts.Stalled)
         setUnratedStatus(statCounts.Unrated)
         
-        setBrokenPercent(Math.floor((brokenStatus/totalCount)*100))
-        setFulfilledPercent(Math.floor((fulfilledStatus/totalCount)*100))
-        setInProgressPercent(Math.floor((inProgressStatus/totalCount)*100))
-        setStalledPercent(Math.floor((stalledStatus/totalCount)*100))
-        setUnratedPercent(Math.floor((unratedStatus/totalCount)*100))
+        setBrokenPercent(Math.round((brokenStatus/totalCount)*100))
+        setFulfilledPercent(Math.round((fulfilledStatus/totalCount)*100))
+        setInProgressPercent(Math.round((inProgressStatus/totalCount)*100))
+        setStalledPercent(Math.round((stalledStatus/totalCount)*100))
+        setUnratedPercent(Math.round((unratedStatus/totalCount)*100))
 
         
 
-    },[statCounts,totalCount])
+    },[statCounts])
 
   return (
     <>
-        <div className="-mt-80">
+        <div className="-mt-80 primary-color">
             <div className="flex justify-center">
                 <div className=" rounded yearBG p-10 m-10 w-2/3">
                     <div class="grid grid-cols-5 gap-4 text-center">
@@ -51,8 +51,8 @@ function CompareStatus( {totalCount, statCounts}){
                                     }}></div>
                                 </div>
                             </div>
-                            <div>
-                                <h2>{fulfilledPercent ? unratedPercent:'0'}%</h2>
+                            <div className="text-green-700 font-bold">
+                                <h2>{fulfilledPercent ? fulfilledPercent:'0'}%</h2>
                             </div>
                             <div className="mt-3">
                                 <h2>
@@ -86,8 +86,8 @@ function CompareStatus( {totalCount, statCounts}){
                                     }}></div>
                                 </div>
                             </div>
-                            <div>
-                                <h2>{brokenPercent ? unratedPercent:'0'}%</h2>
+                            <div className="text-red-700 font-bold">
+                                <h2>{brokenPercent ? brokenPercent:'0'}%</h2>
                             </div>
                             <div className="mt-3">
                                 <h2>
@@ -121,8 +121,8 @@ function CompareStatus( {totalCount, statCounts}){
                                     }}></div>
                                 </div>
                             </div>
-                            <div>
-                                <h2>{stalledPercent ? unratedPercent:'0'}%</h2>
+                            <div className="text-orange-500 font-bold">
+                                <h2>{stalledPercent ? stalledPercent:'0'}%</h2>
                             </div>
                             <div className="mt-3">
                                 <h2>
@@ -156,8 +156,8 @@ function CompareStatus( {totalCount, statCounts}){
                                     }}></div>
                                 </div>
                             </div>
-                            <div>
-                                <h2>{inProgressPercent ? unratedPercent:'0'}%</h2>
+                            <div className="text-yellow-500 font-bold">
+                                <h2>{inProgressPercent ? inProgressPercent:'0'}%</h2>
                             </div>
                             <div className="mt-3">
                                 <h2>
@@ -191,7 +191,7 @@ function CompareStatus( {totalCount, statCounts}){
                                     }}></div>
                                 </div>
                             </div>
-                            <div>
+                            <div className="text-gray-500 font-bold">
                                 <h2>{unratedPercent ? unratedPercent:'0'}%</h2>
                             </div>
                             <div className="mt-3">

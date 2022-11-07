@@ -3,6 +3,16 @@ class CountriesController < ApplicationController
         render json: Country.all
     end
 
+    def show
+      eachCountry = Country.find_by(id: params[:id])
+        render json: eachCountry
+    end
+
+    def getPeriod
+      eachCountry = Country.find_by(id: params[:id])
+        render json: eachCountry.governance_years
+    end
+
     def create
         country = Country.create!(country_params)
         render json: country, status: :created

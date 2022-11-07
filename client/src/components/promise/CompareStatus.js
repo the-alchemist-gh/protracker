@@ -6,7 +6,7 @@ function CompareStatus( ){
 
   return (
     <>
-        <div>
+        <div className="-mt-80">
             <div className="flex justify-center">
                 <div className=" rounded yearBG p-10 m-10 w-2/3">
                     <div class="grid grid-cols-5 gap-4 text-center">

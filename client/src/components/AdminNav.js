@@ -4,6 +4,7 @@ import Button from "./Button";
 import LoginForm from "./LoginForm";
 import AddCountry from "./AddCountry";
 import AddYears from "./AddYears";
+import AddPromise from "./AddPromise";
 
 // import NewItem from "./NewItem";
 
@@ -69,7 +70,7 @@ function AdminNav(
                     showPromiseForm ? 
                     (
                         <div>
-                            <AddYears/>
+                            <AddPromise/>
                         </div>
                     ) : null
                 }

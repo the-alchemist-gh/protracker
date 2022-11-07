@@ -29,7 +29,7 @@ function YearSection({user,trackYear, trackCountry, getYearId}){
                             null
                         }
                         
-                        <h3>Track Government of Ghana Promises and be updated on status of the policies you care about.</h3>
+                        <h3>Track Promises made by the Government {trackCountry ? `of ${trackCountry}` : null} and be updated on status of the policies you care about.</h3>
                     </div>
                     <div className="m-5 md:w-2/3 ">
                             <div>

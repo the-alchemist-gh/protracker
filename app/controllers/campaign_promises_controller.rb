@@ -4,8 +4,8 @@ class CampaignPromisesController < ApplicationController
     end
 
     def create
-        promise = @current.campaign_promises.create!(period_params)
-        render json: period, status: :created
+        promise = CampaignPromise.create!(promise_params)
+        render json: promise, status: :created
     end
 
     def show
@@ -19,10 +19,16 @@ class CampaignPromisesController < ApplicationController
       render json: promise
     end
 
+    def destroy
+      promise = CampaignPromise.find(params[:id])
+      promise.destroy
+      head :no_content
+    end
+
   private
 
 
   def promise_params
-    params.permit(:year, :political_party, :president, :country_id, :image_url)
+    params.permit(:title, :topic, :description, :promise_date, :promise_venue, :promise_completion, :votes, :status, :country_id, :governance_year_id, :user_id)
   end
 end

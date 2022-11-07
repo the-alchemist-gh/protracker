@@ -1,7 +1,7 @@
 import React,{useState, useEffect} from "react";
 import { useHistory } from "react-router-dom";
 
-function AddPromise({user, period}){
+function AddPromise({myuser, period}){
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -63,7 +63,7 @@ useEffect(()=> {
       status: promiseDataState.status,
       country_id: promiseDataState.country_id,
       governance_year_id: promiseDataState.governance_year_id,
-      user_id: 1
+      user_id: promiseDataState.user_id
     }
     setPromiseDataState(newFormData);
 
@@ -78,6 +78,8 @@ useEffect(()=> {
       if (r.ok) {
         r.json().then((user) => user);
         setIsSuccess(true)
+        window.location.reload();
+
       } else {
         r.json().then((err) => setErrors(err.errors));
         setIsSuccess(false)
@@ -122,9 +124,6 @@ useEffect(()=> {
                       name="governance_year_id"
                       autoComplete="Type"
                       className={"mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"}>
-                        {
-                          console.log()
-                        }
                       {
                         yearsData?.map((item)=> (
                           <option key={item.id} value={item.id}>{item.year}</option>
@@ -161,6 +160,24 @@ useEffect(()=> {
                       <option value="Tourism">Tourism</option>
                       <option value="Technology">Technology</option>
                       <option value="Manaufacturing">Manaufacturing</option>
+                  </select>
+                </div>
+                <div className="m-2">
+                    <label className="block text-sm font-medium text-gray-700">
+                      Status of Promise
+                    </label>
+                    <select
+                      id="type"
+                      onChange={handleChange}  
+                      value={promiseDataState.status} 
+                      name="status"
+                      autoComplete="Type"
+                      className={"mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"}>
+                      <option value="Unrated">Unrated</option>
+                      <option value="Fulfilled">Fulfilled</option>
+                      <option value="In-Progress">In Progress</option>
+                      <option value="Stalled">Stalled</option>
+                      <option value="Broken">Broken</option>
                   </select>
                 </div>
               </div>

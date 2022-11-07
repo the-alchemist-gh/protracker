@@ -29,21 +29,19 @@ function PromiseItem({items}){
                         <h2 className="font-bold text-lg ">{items.title}</h2>
                         <h2 className="text-xs text-gray-400">Topic . {items.topic}</h2>
                         <div className="flex">
-                            <h2 className="bg-orange-200 px-3 rounded-full text-xs py-1 mt-2 text-orange-600 ">{items.status}</h2>
+                            <h2 className={`bg-orange-200 px-3 rounded-full text-xs py-1 mt-2 text-orange-600 ${items.status}`}>{items.status}</h2>
                         </div>
                     </div>
                 </div>
                 <div className="flex justify-between mt-2">
-                    <div>
-                        <div className="bg-gray-100 rounded-md px-3 py-1">
-                          Review  
-                        </div>
+                    <div className="bg-gray-100 rounded-md px-3 py-1">
+                        <h2 className="text-sm">Review</h2> 
                     </div>
                     <div className="bg-gray-100 rounded-md px-3 py-1">
-                        Comment
+                        <h2 className="text-sm">Comment</h2>
                     </div>
                     <div className="bg-gray-100 rounded-md px-3 py-1">
-                        Upvote
+                        <h2 className="text-sm">Upvote  <span className="font-bold">{items.votes}</span></h2>
                     </div>
                 </div>
             </div>

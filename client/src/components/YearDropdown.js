@@ -3,7 +3,7 @@ import {BsChevronDown} from "react-icons/bs";
 import { AiOutlineSearch } from "react-icons/ai";
 
 
-function YearDropdown({trackYear,trackCountry, getYearId}){
+function YearDropdown({setSelectedYear, trackYear,trackCountry, getYearId}){
     const [inputValue, setInputValue] = useState("");
     const [selected, setSelected] = useState("");
     const [open, setOpen] = useState(false);
@@ -76,6 +76,7 @@ function YearDropdown({trackYear,trackCountry, getYearId}){
                                         setOpen(false)
                                         setInputValue("")
                                         getYearId(year.id)
+                                        setSelectedYear(year.year)
                                         // setTrackYear()
                                     }
                                 }}

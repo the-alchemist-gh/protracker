@@ -15,7 +15,7 @@ class CampaignPromisesController < ApplicationController
 
     def update
       promise = CampaignPromise.find_by(id: params[:id])
-      promise.update(promise)
+      promise.update(promise_params)
       render json: promise
     end
 

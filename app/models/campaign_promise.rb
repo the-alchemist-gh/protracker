@@ -8,7 +8,7 @@ class CampaignPromise < ApplicationRecord
 
 
     validates :title, presence: true
-    validates :status, inclusion: { in: %w(fulfilled broken stalled inprogress unrated ),
+    validates :status, inclusion: { in: %w(Fulfilled Broken Stalled In-Progress Unrated ),
         message: "%{value} is not a valid Status"}
     validates :topic, inclusion: { in: %w(Education Health Agriculture Energy Tourism Technology Manaufacturing),
             message: "%{value} is not a valid type"}

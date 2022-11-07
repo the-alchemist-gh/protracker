@@ -28,12 +28,37 @@ body {
   color: #003049;
 }
 
+.Broken{
+  color: #ff0000;
+  background-color: #ffcaca;
+}
+
+.Fulfilled{
+  color: green;
+  background-color: rgb(189, 255, 189);
+}
+
+.Stalled{
+  color: rgb(255, 128, 0);
+  background-color: rgb(255, 222, 189);
+}
+
+.Unrated,.unrated{
+  color: rgb(0, 0, 0);
+  background-color: rgb(208, 208, 208);
+}
+
+.In-Progress{
+  color: rgb(255, 225, 0);
+  background-color: rgb(255, 243, 155);
+}
+
 .primary-btn{
   background-color: #003049;
   color: #f5f5dc;
 }
 .image-div-round{
-  
+
 }
 
 code {

@@ -11,22 +11,40 @@ import PromiseList from "./components/promise/PromiseList";
 
 function App() {
   const [user, setUser] = useState(null);
-  const [isLogin, setIsLogin] = useState(false);
+  const [logInId, setLogInId] = useState(null);
   const [trackCountry, setTrackCountry] = useState();
   const [trackYear, setTrackYear] = useState();
+  const [selectedYear, setSelectedYear] = useState("");
   const [yearId, setYearId] = useState();
+  const [promiseState, setPromiseState] = useState([]);
+
 
 
   useEffect(() => {
     // auto-login
     fetch("/me").then((r) => {
       if (r.ok) {
-        r.json().then((currentUser) => setUser(currentUser));
+        r.json().then((currentUser) => {
+          setLogInId(currentUser.id)
+          setUser(currentUser)
+        });
         
       }
     });
+
+    fetch("/campaign_promises")
+        .then((r) => r.json())
+        .then((data)=>{
+                setPromiseState(data)
+            })
   }, []);
 
+  const filteredPromiseData = promiseState.filter((promise)=>{
+    if (promise && selectedYear === '') return true;
+
+    return ((promise.governance_year.year===selectedYear));
+  })
+  
   return (
     <>
       <Navbar user={user} setUser={setUser} getSelectedCountryName={setTrackCountry} getSelectedCountryYears={setTrackYear} />
@@ -34,7 +52,7 @@ function App() {
         user ? 
 
           user.user_type === "Admin" ?
-          <AdminNav user={user} /> : null
+          <AdminNav myuser={user} /> : null
           
           : null
         
@@ -49,9 +67,9 @@ function App() {
             <Login confirmLogin={setUser} />
           </Route>
           <Route path="/">
-            <YearSection  user={user} trackYear={trackYear} trackCountry={trackCountry} getYearId={setYearId} />
+            <YearSection setSelectedYear={setSelectedYear} user={user} trackYear={trackYear} trackCountry={trackCountry} getYearId={setYearId} />
             <PresInfo yearId={yearId}/>
-            <PromiseList />
+            <PromiseList allPromise={filteredPromiseData} />
           </Route>
         </Switch>
       </main>

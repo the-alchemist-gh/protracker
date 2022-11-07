@@ -8,8 +8,7 @@ import AddPromise from "./AddPromise";
 
 // import NewItem from "./NewItem";
 
-function AdminNav(
-    // {sendSearchValue, loginName, isLoggedIn}
+function AdminNav(myuser
     ){
   const [showCountryForm, setShowCountryForm] = useState(false);
   const [showYearForm, setShowYearForm] = useState(false);
@@ -70,7 +69,7 @@ function AdminNav(
                     showPromiseForm ? 
                     (
                         <div>
-                            <AddPromise/>
+                            <AddPromise myuser={myuser} />
                         </div>
                     ) : null
                 }

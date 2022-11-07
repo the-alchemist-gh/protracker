@@ -1,4 +1,6 @@
 class CountriesController < ApplicationController
+  skip_before_action :authorize, only: [:index, :show, :getPeriod]
+
     def index
         render json: Country.all
     end

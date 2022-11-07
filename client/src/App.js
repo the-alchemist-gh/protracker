@@ -49,7 +49,7 @@ function App() {
     if (promise && selectedYear === '') return true;
 
     return ((promise.governance_year.year===selectedYear));
-  })
+  });
   
   return (
     <>

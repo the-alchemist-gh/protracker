@@ -52,7 +52,7 @@ function PresInfo({setStatCounts, setShowStat, promiseAdded,yearId}){
                             </h2>
                             <div>
                                 <h4 className="px-10">
-                                The {period.political_party} party led by {period.president} won power for the period of {period.year}. We selected below the top 100 most important campaign promises of President {period.political_party}. For each campaign promise, our media partners research the issue and then rate it based on whether the promise was Fulfilled, Broken, Stalled, In Progress or Not Yet Rated. 
+                                The {period.political_party} party led by {period.president} won power for the period of {period.year}. We selected below the top 100 most important campaign promises of President {period.president}. For each campaign promise, our media partners research the issue and then rate it based on whether the promise was Fulfilled, Broken, Stalled, In Progress or Not Yet Rated. 
                                 We rate the promise not on the president's intentions or effort, but on verifiable outcomes from our media partners. 
                                 </h4>
                             </div>

@@ -8,11 +8,11 @@ function CompareStatus( {totalCount, statCounts}){
     const [stalledStatus, setStalledStatus] = useState(0)
     const [unratedStatus, setUnratedStatus] = useState(0)
 
-    const [brokenPercent, setBrokenPercent] = useState(0)
-    const [fulfilledPercent, setFulfilledPercent] = useState(0)
-    const [inProgressPercent, setInProgressPercent] = useState(0)
-    const [stalledPercent, setStalledPercent] = useState(0)
-    const [unratedPercent, setUnratedPercent] = useState(0)
+    const [brokenPercent, setBrokenPercent] = useState(Math.round((brokenStatus/totalCount)*100))
+    const [fulfilledPercent, setFulfilledPercent] = useState(Math.round((fulfilledStatus/totalCount)*100))
+    const [inProgressPercent, setInProgressPercent] = useState(Math.round((inProgressStatus/totalCount)*100))
+    const [stalledPercent, setStalledPercent] = useState(Math.round((stalledStatus/totalCount)*100))
+    const [unratedPercent, setUnratedPercent] = useState(Math.round((unratedStatus/totalCount)*100))
     
 
 
@@ -39,7 +39,7 @@ function CompareStatus( {totalCount, statCounts}){
         <div className="-mt-80 primary-color">
             <div className="flex justify-center">
                 <div className=" rounded yearBG p-10 m-10 w-2/3">
-                    <div class="grid grid-cols-5 gap-4 text-center">
+                    <div className="grid grid-cols-5 gap-4 text-center">
                         <div>
                             <div>
                                 <h3>Fulfilled</h3>

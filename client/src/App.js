@@ -73,7 +73,7 @@ function App() {
             <Login confirmLogin={setUser} />
           </Route>
           <Route path="/">
-            <YearSection setSelectedYear={setSelectedYear} user={user} trackYear={trackYear} trackCountry={trackCountry} getYearId={setYearId} />
+            <YearSection setSelectedYear={setSelectedYear} user={user} trackYear={trackYear} setShowStat={setShowStat} trackCountry={trackCountry} getYearId={setYearId} />
             <PresInfo setStatCounts={setStatCounts} setShowStat={setShowStat} yearId={yearId} promiseAdded={filteredPromiseData.length}/>
             <PromiseList statCounts={statCounts} showStat={showStat} allPromise={filteredPromiseData} />
           </Route>

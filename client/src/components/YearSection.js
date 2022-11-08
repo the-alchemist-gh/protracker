@@ -4,7 +4,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 import YearDropdown from "./YearDropdown";
 
 
-function YearSection({ user,setSelectedYear,trackYear, trackCountry, getYearId}){
+function YearSection({ setShowStat,user,setSelectedYear,trackYear, trackCountry, getYearId}){
     // const [countries, setCountries] = useState(null);
     // const [inputValue, setInputValue] = useState("");
     // const [selected, setSelected] = useState("Ghana");
@@ -34,7 +34,7 @@ function YearSection({ user,setSelectedYear,trackYear, trackCountry, getYearId})
                     <div className="m-5 md:w-2/3 ">
                             <div>
                                 <h3>Select Period of Governance</h3>
-                                <YearDropdown trackYear={trackYear} trackCountry={trackCountry} setSelectedYear={setSelectedYear} getYearId={getYearId} />
+                                <YearDropdown setShowStat={setShowStat} trackYear={trackYear} trackCountry={trackCountry} setSelectedYear={setSelectedYear} getYearId={getYearId} />
                             </div>
                     </div> 
                 </div>

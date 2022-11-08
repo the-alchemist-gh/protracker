@@ -12,7 +12,8 @@ function PromiseList({ statCounts, allPromise, showStat}){
         <div className={`w-full bg-blue-50 p-10 ${showStat ? 'mt-60' : null}`}>
             {
                 showStat ? 
-                (<CompareStatus totalCount={allPromise.length} statCounts={statCounts} />) : null
+                (
+                 <CompareStatus totalCount={allPromise.length} statCounts={statCounts} />) : null
             }
             {
                 allPromise.length < 1 ?

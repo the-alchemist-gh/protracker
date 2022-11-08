@@ -8,6 +8,10 @@ function PresInfo({setStatCounts, setShowStat, promiseAdded,yearId}){
     const [period, setPeriod] = useState({
 
     })
+    let promiseStat={}
+
+    // })
+
     
 
 
@@ -15,22 +19,20 @@ function PresInfo({setStatCounts, setShowStat, promiseAdded,yearId}){
         fetch(`/governance_years/${yearId}`)
         .then((r) => {
             if (r.ok) {
-              r.json().then((data) => setPeriod(data));
-              
+              r.json().then((data) => {
+                
+                    setPeriod(data)
+                    // setPromiseStat(data.campaign_promises)
+                    // eslint-disable-next-line no-sequences
+
+                    
+                });
             }
           });
     },[yearId])
 
-    function handleShowStats(){
-        // console.log(period.campaign_promises)
-        // console.log(typeof period.campaign_promises)
-        const promiseStat = period.campaign_promises;
-          // eslint-disable-next-line no-sequences
+ 
 
-         setStatCounts(promiseStat.reduce((c, { status: key }) => (c[key] = (c[key] || 0) + 1, c), {}))
-        setShowStat(true)
-        
-    }
   return (
     < >
         {
@@ -61,7 +63,13 @@ function PresInfo({setStatCounts, setShowStat, promiseAdded,yearId}){
                                     promiseAdded > 0 ?
                                     (
                                         <div className="px-10 py-2">
-                                            <button type="submit" onClick={handleShowStats} className="track-btn px-6 py-2 my-3 rounded hover:bg-red-900">Track {period.president}'s Campaign Promises now</button>
+                                            <button type="submit" onClick={()=> {
+                                                promiseStat = period.campaign_promises;
+                                                setStatCounts(promiseStat.reduce((c, { status: key }) => (c[key] = (c[key] || 0) + 1, c), {}))
+
+                                                setShowStat(true)
+                                                console.log("Showing stat")
+                                            }} className="track-btn px-6 py-2 my-3 rounded hover:bg-red-900">Track {period.president}'s Campaign Promises now</button>
                                         </div>
                                     ) : null
                                 }

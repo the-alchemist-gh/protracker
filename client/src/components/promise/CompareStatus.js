@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from "react";
 import { NavLink,useHistory } from "react-router-dom";
 
-function CompareStatus( {totalCount, statCounts}){
+function CompareStatus( { setSelectedStatus ,totalCount, statCounts}){
     const [brokenStatus, setBrokenStatus] = useState(0)
     const [fulfilledStatus, setFulfilledStatus] = useState(0)
     const [inProgressStatus, setInProgressStatus] = useState(0)
@@ -34,6 +34,12 @@ function CompareStatus( {totalCount, statCounts}){
 
     },[statCounts])
 
+
+   function handlePromiseClick(){
+
+        setSelectedStatus("Stalled")
+   }
+
   return (
     <>
         <div className="-mt-80 primary-color">
@@ -51,10 +57,10 @@ function CompareStatus( {totalCount, statCounts}){
                                     }}></div>
                                 </div>
                             </div>
-                            <div className="text-green-700 font-bold">
+                            <div  className="text-green-700 font-bold">
                                 <h2>{fulfilledPercent ? fulfilledPercent:'0'}%</h2>
                             </div>
-                            <div className="mt-3">
+                            <div id="fullItem" className="mt-3">
                                 <h2>
                                     {
                                         fulfilledStatus ? 
@@ -124,7 +130,7 @@ function CompareStatus( {totalCount, statCounts}){
                             <div className="text-orange-500 font-bold">
                                 <h2>{stalledPercent ? stalledPercent:'0'}%</h2>
                             </div>
-                            <div className="mt-3">
+                            <div className="mt-3" onClick={handlePromiseClick}>
                                 <h2>
                                     {
                                         stalledStatus ? 

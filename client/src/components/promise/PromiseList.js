@@ -3,7 +3,7 @@ import CompareStatus from "./CompareStatus";
 // import { NavLink,useHistory } from "react-router-dom";
 import PromiseItem from "./PromiseItem";
 
-function PromiseList({ statCounts, allPromise, showStat}){
+function PromiseList({setSelectedStatus,user, statCounts, allPromise, showStat}){
     // const [statCounts, setStatCounts] = useState()
 
  
@@ -13,7 +13,7 @@ function PromiseList({ statCounts, allPromise, showStat}){
             {
                 showStat ? 
                 (
-                 <CompareStatus totalCount={allPromise.length} statCounts={statCounts} />) : null
+                 <CompareStatus setSelectedStatus={setSelectedStatus} totalCount={allPromise.length} statCounts={statCounts} />) : null
             }
             {
                 allPromise.length < 1 ?
@@ -34,7 +34,7 @@ function PromiseList({ statCounts, allPromise, showStat}){
                                 {
 
                                     allPromise?.map((item)=>(
-                                        <PromiseItem key={item.id} items={item} />
+                                        <PromiseItem key={item.id} user={user} items={item} />
                                     ))
                                 }
                             </div>

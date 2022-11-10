@@ -15,6 +15,7 @@ function App() {
   const [trackCountry, setTrackCountry] = useState();
   const [trackYear, setTrackYear] = useState();
   const [selectedYear, setSelectedYear] = useState("");
+  const [selectedStatus, setSelectedStatus] = useState("");
   const [showStat, setShowStat] = useState(false);
   const [yearId, setYearId] = useState();
   const [promiseState, setPromiseState] = useState([]);
@@ -46,7 +47,7 @@ function App() {
   
 
   const filteredPromiseData = promiseState.filter((promise)=>{
-    if (promise && selectedYear === '') return true;
+    if (promise && selectedYear === '' && selectedStatus === '') return true;
 
     return ((promise.governance_year.year===selectedYear));
   });
@@ -75,7 +76,7 @@ function App() {
           <Route path="/">
             <YearSection setSelectedYear={setSelectedYear} user={user} trackYear={trackYear} setShowStat={setShowStat} trackCountry={trackCountry} getYearId={setYearId} />
             <PresInfo setStatCounts={setStatCounts} setShowStat={setShowStat} yearId={yearId} promiseAdded={filteredPromiseData.length}/>
-            <PromiseList statCounts={statCounts} showStat={showStat} allPromise={filteredPromiseData} />
+            <PromiseList setSelectedStatus={setSelectedStatus} user={user} statCounts={statCounts} showStat={showStat} allPromise={filteredPromiseData} />
           </Route>
         </Switch>
       </main>

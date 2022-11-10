@@ -16,7 +16,7 @@ function PromiseItem({user, items}){
  
   return (
     < >
-        <div className="bg-white flex shadow-lg p-3 round">
+        <div className="bg-white rounded flex shadow-lg p-3 round">
             <div className="max-w-md flex flex-col justify-between bg-white rounded overflow-visible ">
                 <div className="flex w-full pb-3">
                     <div className="w-1/4 m-1">

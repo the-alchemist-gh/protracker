@@ -16,7 +16,7 @@ function PromiseItem({user, items}){
  
   return (
     < >
-        <div className="bg-white shadow-lg p-5 round">
+        <div className="bg-white shadow-lg p-3 round">
             <div className="max-w-md bg-white rounded overflow-visible ">
                 <div className="flex w-full pb-3">
                     <div className="w-1/4 m-1">
@@ -36,7 +36,7 @@ function PromiseItem({user, items}){
                 {
                     user ?
                     (
-                        <div className="flex justify-between mt-2 border-t">
+                        <div className="flex justify-between mt-2 border-t py-3">
                             {
                                 user.user_type === "Admin" ?
                                 (

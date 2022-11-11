@@ -8,11 +8,11 @@ function CompareStatus( { setSelectedStatus ,totalCount, statCounts}){
     const [stalledStatus, setStalledStatus] = useState(0)
     const [unratedStatus, setUnratedStatus] = useState(0)
 
-    const [brokenPercent, setBrokenPercent] = useState(Math.round((brokenStatus/totalCount)*100))
-    const [fulfilledPercent, setFulfilledPercent] = useState(Math.round((fulfilledStatus/totalCount)*100))
-    const [inProgressPercent, setInProgressPercent] = useState(Math.round((inProgressStatus/totalCount)*100))
-    const [stalledPercent, setStalledPercent] = useState(Math.round((stalledStatus/totalCount)*100))
-    const [unratedPercent, setUnratedPercent] = useState(Math.round((unratedStatus/totalCount)*100))
+    const [brokenPercent, setBrokenPercent] = useState(0)
+    const [fulfilledPercent, setFulfilledPercent] = useState(0)
+    const [inProgressPercent, setInProgressPercent] = useState(0)
+    const [stalledPercent, setStalledPercent] = useState(0)
+    const [unratedPercent, setUnratedPercent] = useState(0)
     
 
 
@@ -32,7 +32,7 @@ function CompareStatus( { setSelectedStatus ,totalCount, statCounts}){
 
         
 
-    },[statCounts])
+    },[statCounts, fulfilledStatus, brokenStatus, inProgressStatus, stalledStatus, unratedStatus ])
 
 
    function handlePromiseClick(){
